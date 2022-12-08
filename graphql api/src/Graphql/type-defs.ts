@@ -10,6 +10,24 @@ const typeDefs = gql `
         salt:String
     }
 
+    type UpdatedUser{
+        _id:ID!
+        email:String
+        username:String
+        password:String
+        fullname:String
+        salt:String
+    }
+
+    type UpdatedMovie{
+        id:ID!
+        title:String
+        price:String
+        description:String
+        image:String
+        addedBy:String
+    }
+
     type Movie{
         id:ID!
         title:String!
@@ -19,6 +37,7 @@ const typeDefs = gql `
     }
 
     input createMovie{
+        id:ID!
         title:String!
         price:String!
         description:String!
@@ -42,10 +61,19 @@ const typeDefs = gql `
     }
 
     input updateUser{
+        _id:ID!
         email:String
         username:String
         password:String
         fullname:String
+    }
+
+    input updateMovie{
+        id:ID!
+        title:String
+        description:String
+        image:String
+        price:String
     }
 
     type Message{
@@ -54,17 +82,17 @@ const typeDefs = gql `
 
     type Query{
         allUsers:[User]!
-        singleUser(id:ID!):User
+        singleUser(_id:ID!):User
         allMovies:[Movie]!
         singleMovie(id:ID!):Movie
     }
 
     type Mutation{
-        createUser(input:createUser):User!
-        updateUser(input:updateUser):User!
-        deleteUser(id:ID!):Message!
-        createMovie(input:createMovie):Movie!
-        updateMovie(input:updateMovie):Movie!
+        createUser(input:createUser!):User!
+        updateUser(input:updateUser!):UpdatedUser!
+        deleteUser(_id:ID!):Message!
+        createMovie(input:createMovie!):Movie!
+        updateMovie(input:updateMovie!):UpdatedMovie!
         deleteMovie(id:ID!):Message!
     }
 

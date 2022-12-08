@@ -1,5 +1,5 @@
 import movieResolver from "./resolvers/movies";
-import usersResolver from "./resolvers/movies";
+import usersResolver from "./resolvers/users";
 
 
 export default{
